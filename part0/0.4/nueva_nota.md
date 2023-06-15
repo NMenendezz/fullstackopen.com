@@ -15,7 +15,7 @@ sequenceDiagram
 
     note over browser: browser executes the event handler that renders notes to display
 
-    browser->>server: HTTP POST {note: 'The previous content.'}
+    browser->>server: HTTP POST {note: 'Hola mundo!'}
 
     note over browser: browser reloads the page
 ```
