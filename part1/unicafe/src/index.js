@@ -11,16 +11,22 @@ const Button = ({ onClick, text }) => {
 
 const Statistic = ({ text, value }) => {
   return (
-    <>
-      <p>
-        {text}: {value}
-      </p>
-    </>
+    <div>
+      {text}: {value}
+    </div>
   );
 };
 
 const Statistics = ({ good, neutral, bad }) => {
   const all = good + neutral + bad;
+
+  if (all === 0) {
+    return (
+      <div>
+        No feedback given
+      </div>
+    );
+  }
 
   return (
     <>
