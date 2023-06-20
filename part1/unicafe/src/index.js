@@ -9,11 +9,12 @@ const Button = ({ onClick, text }) => {
   return <button onClick={onClick}>{text}</button>;
 };
 
-const Statistic = ({ text, value }) => {
+const StatisticLine = ({ text, value }) => {
   return (
-    <div>
-      {text}: {value}
-    </div>
+    <tr>
+      <td>{text}:</td>
+      <td>{value}</td>
+    </tr>
   );
 };
 
@@ -21,22 +22,22 @@ const Statistics = ({ good, neutral, bad }) => {
   const all = good + neutral + bad;
 
   if (all === 0) {
-    return (
-      <div>
-        No feedback given
-      </div>
-    );
+    return <div>No feedback given</div>;
   }
 
   return (
-    <>
-      <Statistic text="good" value={good} />
-      <Statistic text="neutral" value={neutral} />
-      <Statistic text="bad" value={bad} />
-      <Statistic text="all" value={all} />
-      <Statistic text="average" value={(good - bad) / 2} />
-      <Statistic text="positive" value={(good / all) * 100} />
-    </>
+    <div>
+      <table>
+        <tbody>
+          <StatisticLine text="good" value={good} />
+          <StatisticLine text="neutral" value={neutral} />
+          <StatisticLine text="bad" value={bad} />
+          <StatisticLine text="all" value={all} />
+          <StatisticLine text="average" value={(good - bad) / 2} />
+          <StatisticLine text="positive" value={(good / all) * 100} />
+        </tbody>
+      </table>
+    </div>
   );
 };
 
