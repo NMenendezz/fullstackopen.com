@@ -40,6 +40,22 @@ const courses = [
       },
     ],
   },
+  {
+    name: 'Node.js',
+    id: 2,
+    parts: [
+      {
+        name: 'Routing',
+        exercises: 3,
+        id: 1,
+      },
+      {
+        name: 'Middlewares',
+        exercises: 7,
+        id: 2,
+      },
+    ],
+  },
 ];
 
 ReactDOM.render(<App courses={courses} />, document.getElementById("root"));
