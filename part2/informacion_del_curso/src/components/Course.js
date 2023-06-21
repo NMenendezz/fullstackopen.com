@@ -9,7 +9,7 @@ const Course = ({ courses }) => {
         <div key={course.id}>
           <Header course={course.name} />
           <Content parts={course.parts} />
-          <Total exercises={course.parts}/>
+          <Total exercises={course.parts} />
         </div>
       ))}
     </div>

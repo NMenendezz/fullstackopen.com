@@ -30,16 +30,16 @@ const courses = [
     ],
   },
   {
-    name: 'Node.js',
+    name: "Node.js",
     id: 2,
     parts: [
       {
-        name: 'Routing',
+        name: "Routing",
         exercises: 3,
         id: 1,
       },
       {
-        name: 'Middlewares',
+        name: "Middlewares",
         exercises: 7,
         id: 2,
       },
