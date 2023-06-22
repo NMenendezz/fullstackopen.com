@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Persons from "./components/Persons";
 import Filter from "./components/Filter";
+import PersonForm from "./components/PersonForm";
+import Persons from "./components/Persons";
 
 const App = () => {
   const [searchName, setSearchName] = useState("");
@@ -48,17 +49,13 @@ const App = () => {
       <h2>Phonebook</h2>
       <Filter value={searchName} onChange={handleChange} />
       <h2>add a new</h2>
-      <form onSubmit={addPerson}>
-        <div>
-          name: <input value={newName} onChange={handleNameChange} />
-        </div>
-        <div>
-          number: <input value={newNumber} onChange={handleNumberChange} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <PersonForm
+        onSubmit={addPerson}
+        newName={newName}
+        newNumber={newNumber}
+        handleNameChange={handleNameChange}
+        handleNumberChange={handleNumberChange}
+      />
       <h2>Numbers</h2>
       <ul>
         <Persons
