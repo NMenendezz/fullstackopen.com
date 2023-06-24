@@ -10,7 +10,9 @@ const Result = ({ countries, search }) => {
       return <Country country={filtered[0]} />;
     }
     if (filtered.length >= 2 && filtered.length <= 10) {
-      return <Country country={filtered} />;
+      return (
+        <Country country={filtered} />
+      );
     }
     if (filtered.length > 10) {
       return <div>Too many matches, specify another filter</div>;

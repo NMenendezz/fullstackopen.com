@@ -5,7 +5,11 @@ const Country = ({ country }) => {
     return (
       <div>
         {country.map((e) => {
-          return <div>{e.name.common}</div>;
+          return (
+          <div key={e.name.common}>
+            {e.name.common}
+            <Button countryShow={e} />
+          </div>);
         })}
       </div>
     );
