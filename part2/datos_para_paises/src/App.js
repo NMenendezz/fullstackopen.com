@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Country from "./components/Country";
+import Result from "./components/Result";
 
 const App = () => {
-  const [searchCountry, setSearchCountry] = useState("");
+  const [search, setSearch] = useState("");
   const [countries, setCountries] = useState([]);
 
   const hook = () => {
@@ -14,17 +15,17 @@ const App = () => {
 
   useEffect(hook, []);
 
-  const handleCountrySearch = (event) => setSearchCountry(event.target.value);
+  const handleSearch = (event) => setSearch(event.target.value);
 
-  /* const handleCountrySelect = (name) => setSearchCountry(name); */
+  /* const handleSelect = (name) => setSearch(name); */
 
   return (
     <div>
       <div>find countries</div>
-      <input onChange={handleCountrySearch} />
-      <Country
+      <input onChange={handleSearch} />
+      <Result
         countries={countries}
-        searchCountry={searchCountry}
+        search={search}
         /* handleCountrySelect={handleCountrySelect} */
       />
     </div>
