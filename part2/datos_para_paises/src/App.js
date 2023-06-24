@@ -20,10 +20,7 @@ const App = () => {
     <div>
       <div>find countries</div>
       <input onChange={handleSearch} />
-      <Result
-        countries={countries}
-        search={search}
-      />
+      <Result countries={countries} search={search} />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from "react"; 
+import { useState } from "react";
 import Country from "./Country";
 
 const Button = ({ countryShow }) => {
@@ -10,21 +10,18 @@ const Button = ({ countryShow }) => {
     } else {
       setShow(false);
     }
-  }
+  };
 
   if (!show) {
-    return (
-      <button onClick={handleClick} >{!show ? "show" : "hide"}</button>
-    )
+    return <button onClick={handleClick}>{!show ? "show" : "hide"}</button>;
   } else {
     return (
       <>
-        <button onClick={handleClick} >{!show ? "show" : "hide"}</button>
-        <Country country={countryShow}/>
+        <button onClick={handleClick}>{!show ? "show" : "hide"}</button>
+        <Country country={countryShow} />
       </>
-    )
+    );
   }
-
 };
 
 export default Button;
