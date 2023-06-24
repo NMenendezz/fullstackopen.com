@@ -5,7 +5,6 @@ import Result from "./components/Result";
 const App = () => {
   const [search, setSearch] = useState("");
   const [countries, setCountries] = useState([]);
-  const [countryShow, setCountryShow] = useState(false)
 
   const hook = () => {
     axios
@@ -17,8 +16,6 @@ const App = () => {
 
   const handleSearch = (event) => setSearch(event.target.value);
 
-  /* const handleClick = (name) => setSearch(name); */
-
   return (
     <div>
       <div>find countries</div>
@@ -26,9 +23,6 @@ const App = () => {
       <Result
         countries={countries}
         search={search}
-        countryShow={countryShow}
-        setCountryShow={setCountryShow}
-        /* handleClick={handleClick} */
       />
     </div>
   );
