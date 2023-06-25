@@ -1,6 +1,6 @@
 import Person from "./Person";
 
-const Persons = ({ persons, searchName, setPersons }) => {
+const Persons = ({ persons, searchName, setPersons, handleDelete }) => {
   return (
     <>
       {persons.map((person) => {
@@ -9,7 +9,7 @@ const Persons = ({ persons, searchName, setPersons }) => {
           person.name.toLowerCase().search(searchName.toLowerCase()) !== -1
         ) {
           return (
-            <Person key={person.name} person={person} setPersons={setPersons} />
+            <Person key={person.name} person={person} setPersons={setPersons} handleDelete={handleDelete} />
           );
         } else {
           return null;
