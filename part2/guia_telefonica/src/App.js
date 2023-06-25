@@ -17,7 +17,7 @@ const App = () => {
     personService.getAll().then((initialPersons) => {
       setPersons(initialPersons);
     });
-  }, [persons]);
+  }, []);
 
   const addPerson = (event) => {
     event.preventDefault();
@@ -39,7 +39,7 @@ const App = () => {
           .then((updatedPerson) => {
             setPersons(
               persons.map((person) =>
-                person.id !== updatePerson.id ? person : updatedPerson
+                person.id !== updatePerson[0].id ? person : updatedPerson
               )
             );
             setNewName("");
@@ -132,7 +132,6 @@ const App = () => {
         <Persons
           persons={persons}
           searchName={searchName}
-          setPersons={setPersons}
           handleDelete={handleDelete}
         />
       </ul>

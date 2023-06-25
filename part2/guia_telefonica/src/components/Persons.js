@@ -1,20 +1,20 @@
-import Person from "./Person";
+import React from "react";
 
-const Persons = ({ persons, searchName, setPersons, handleDelete }) => {
+const Persons = ({ persons, searchName, handleDelete }) => {
+  const filteredPersons = persons.filter((person) =>
+    person.name.toLowerCase().includes(searchName.toLowerCase())
+  );
+
   return (
     <>
-      {persons.map((person) => {
-        if (
-          searchName.length === 0 ||
-          person.name.toLowerCase().search(searchName.toLowerCase()) !== -1
-        ) {
-          return (
-            <Person key={person.name} person={person} setPersons={setPersons} handleDelete={handleDelete} />
-          );
-        } else {
-          return null;
-        }
-      })}
+      {filteredPersons.map((person) => (
+        <li key={person.id}>
+          {person.name} {person.number}{" "}
+          <button id={person.id} onClick={handleDelete}>
+            delete
+          </button>
+        </li>
+      ))}
     </>
   );
 };
