@@ -3,12 +3,15 @@ import Filter from "./components/Filter";
 import PersonForm from "./components/PersonForm";
 import Persons from "./components/Persons";
 import personService from "./services/persons";
+import Notification from "./components/Notification";
 
 const App = () => {
   const [searchName, setSearchName] = useState("");
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
+  const [message, setMessage] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     personService.getAll().then((initialPersons) => {
@@ -41,7 +44,10 @@ const App = () => {
             );
             setNewName("");
             setNewNumber("");
-            window.alert(`${updatedPerson.name} updated`);
+            setMessage(`${updatedPerson.name} was successfully updated`);
+            setTimeout(() => {
+              setMessage(null);
+            }, 5000);
           });
       }
     } else {
@@ -49,6 +55,10 @@ const App = () => {
         setPersons(persons.concat(returnedPerson));
         setNewName("");
         setNewNumber("");
+        setMessage(`${newName} was successfully added`);
+        setTimeout(() => {
+          setMessage(null);
+        }, 5000);
       });
     }
   };
@@ -69,6 +79,12 @@ const App = () => {
     if (window.confirm(`Delete ${persons[event.target.id - 1].name}?`)) {
       personService.remove(event.target.id).then(() => {
         setPersons(persons.filter((p) => p.id.toString() !== event.target.id));
+        setMessage(
+          `${persons[event.target.id - 1].name} was successfully deleted`
+        );
+        setTimeout(() => {
+          setMessage(null);
+        }, 5000);
       });
     }
   };
@@ -76,6 +92,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={message} error={error} />
       <Filter value={searchName} onChange={handleChange} />
       <h2>add a new</h2>
       <PersonForm
