@@ -10,9 +10,7 @@ const Persons = ({ persons, searchName, handleDelete }) => {
       {filteredPersons.map((person) => (
         <li key={person.id}>
           {person.name} {person.number}{" "}
-          <button id={person.id} onClick={handleDelete}>
-            delete
-          </button>
+          <button onClick={() => handleDelete(person.id)}>delete</button>
         </li>
       ))}
     </>

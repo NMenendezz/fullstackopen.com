@@ -82,30 +82,26 @@ const App = () => {
     setSearchName(event.target.value);
   };
 
-  const handleDelete = (event) => {
-    if (window.confirm(`Delete ${persons[event.target.id - 1].name}?`)) {
+  const handleDelete = (id) => {
+    const personToDelete = persons.find((person) => person.id === id);
+
+    if (window.confirm(`Delete ${personToDelete.name}?`)) {
       personService
-        .remove(event.target.id)
+        .remove(id)
         .then(() => {
-          setPersons(
-            persons.filter((p) => p.id.toString() !== event.target.id)
-          );
-          setMessage(
-            `${persons[event.target.id - 1].name} was successfully deleted`
-          );
+          setPersons(persons.filter((person) => person.id !== id));
+          setMessage(`${personToDelete.name} was successfully deleted`);
           setTimeout(() => {
             setMessage(null);
           }, 5000);
         })
         .catch((error) => {
           console.log(error);
-          setPersons(persons.filter((person) => person.id !== event.target.id));
+          setPersons(persons.filter((person) => person.id !== id));
           setNewName("");
           setNewNumber("");
           setMessage(
-            `[ERROR] ${
-              persons[event.target.id - 1].name
-            } was already deleted from server`
+            `[ERROR] ${personToDelete.name} was already deleted from the server`
           );
           setTimeout(() => {
             setMessage(null);
