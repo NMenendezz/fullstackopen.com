@@ -48,9 +48,16 @@ const App = () => {
             setTimeout(() => {
               setMessage(null);
             }, 5000);
+          })
+          .catch((error) => {
+            setMessage(`[ERROR] ${error.response.data.error}`);
+            setError(true);
+            setTimeout(() => {
+              setMessage(null);
+            }, 5000);
           });
       }
-    } else {
+    } else if (newName) {
       personService.create(personObject).then((returnedPerson) => {
         setPersons(persons.concat(returnedPerson));
         setNewName("");
@@ -77,15 +84,33 @@ const App = () => {
 
   const handleDelete = (event) => {
     if (window.confirm(`Delete ${persons[event.target.id - 1].name}?`)) {
-      personService.remove(event.target.id).then(() => {
-        setPersons(persons.filter((p) => p.id.toString() !== event.target.id));
-        setMessage(
-          `${persons[event.target.id - 1].name} was successfully deleted`
-        );
-        setTimeout(() => {
-          setMessage(null);
-        }, 5000);
-      });
+      personService
+        .remove(event.target.id)
+        .then(() => {
+          setPersons(
+            persons.filter((p) => p.id.toString() !== event.target.id)
+          );
+          setMessage(
+            `${persons[event.target.id - 1].name} was successfully deleted`
+          );
+          setTimeout(() => {
+            setMessage(null);
+          }, 5000);
+        })
+        .catch((error) => {
+          console.log(error);
+          setPersons(persons.filter((person) => person.id !== event.target.id));
+          setNewName("");
+          setNewNumber("");
+          setMessage(
+            `[ERROR] ${
+              persons[event.target.id - 1].name
+            } was already deleted from server`
+          );
+          setTimeout(() => {
+            setMessage(null);
+          }, 5000);
+        });
     }
   };
 
