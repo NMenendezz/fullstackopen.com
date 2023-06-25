@@ -12,9 +12,9 @@ const App = () => {
 
   useEffect(() => {
     personService.getAll().then((initialPersons) => {
-      setPersons(initialPersons)
+      setPersons(initialPersons);
     });
-  }, []);
+  }, [persons]);
 
   const addPerson = (event) => {
     event.preventDefault();
@@ -26,7 +26,24 @@ const App = () => {
     if (
       persons.filter((person) => person.name === personObject.name).length > 0
     ) {
-      alert(`${newName} is already added to phonebook`);
+      const message = `${newName} is already added to phonebook`;
+      if (window.confirm(message)) {
+        const updatePerson = persons.filter(
+          (person) => person.name === newName
+        );
+        personService
+          .update(updatePerson[0].id, personObject)
+          .then((updatedPerson) => {
+            setPersons(
+              persons.map((person) =>
+                person.id !== updatePerson.id ? person : updatedPerson
+              )
+            );
+            setNewName("");
+            setNewNumber("");
+            window.alert(`${updatedPerson.name} updated`);
+          });
+      }
     } else {
       personService.create(personObject).then((returnedPerson) => {
         setPersons(persons.concat(returnedPerson));
@@ -55,7 +72,6 @@ const App = () => {
       });
     }
   };
-    
 
   return (
     <div>
