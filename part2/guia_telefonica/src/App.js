@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import Filter from "./components/Filter";
 import PersonForm from "./components/PersonForm";
 import Persons from "./components/Persons";
-import personService from "./services/persons";
 import Notification from "./components/Notification";
 
+import personService from "./services/persons";
+
 const App = () => {
-  const [searchName, setSearchName] = useState("");
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
+  const [searchName, setSearchName] = useState("");
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(false);
 
