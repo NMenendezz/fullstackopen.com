@@ -29,7 +29,7 @@ const App = () => {
     if (
       persons.filter((person) => person.name === personObject.name).length > 0
     ) {
-      const message = `${newName} is already added to phonebook, replacing the old number with the new one`;
+      const message = `${newName} is already added to phonebook, replace the old number with the new one?`;
       if (window.confirm(message)) {
         const updatePerson = persons.filter(
           (person) => person.name === newName
