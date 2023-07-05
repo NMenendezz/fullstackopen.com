@@ -66,7 +66,13 @@ const App = () => {
         setMessage(`${newName} was successfully added`);
         setTimeout(() => {
           setMessage(null);
-        }, 5000);
+        }, 5000).catch((error) => {
+          setMessage(`[ERROR] ${error.response.data.error}`);
+          setTimeout(() => {
+            setMessage(null);
+          }, 5000);
+          console.log(error.response.data);
+        });
       });
     }
   };
