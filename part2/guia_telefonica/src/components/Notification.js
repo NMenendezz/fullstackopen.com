@@ -1,6 +1,16 @@
-const Notification = ({ isError, message }) => {
+const Notification = ({ message }) => {
+  const errorStyle = {
+    color: "red",
+    background: "lightgrey",
+    fontSize: 20,
+    borderStyle: "solid",
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10,
+  };
+
   const notificationStyle = {
-    color: isError ? "red" : "green",
+    color: "green",
     background: "lightgrey",
     fontSize: 20,
     borderStyle: "solid",
@@ -11,6 +21,10 @@ const Notification = ({ isError, message }) => {
 
   if (message === null) {
     return null;
+  }
+
+  if (message.includes('ERROR')){
+    return <div style={errorStyle}>{message}</div>;
   }
 
   return <div style={notificationStyle}>{message}</div>;
