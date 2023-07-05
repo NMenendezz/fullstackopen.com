@@ -30,7 +30,7 @@ const App = () => {
     if (
       persons.filter((person) => person.name === personObject.name).length > 0
     ) {
-      const message = `${newName} is already added to phonebook`;
+      const message = `${newName} is already added to phonebook, replacing the old number with the new one`;
       if (window.confirm(message)) {
         const updatePerson = persons.filter(
           (person) => person.name === newName
@@ -59,21 +59,24 @@ const App = () => {
           });
       }
     } else if (newName) {
-      personService.create(personObject).then((returnedPerson) => {
-        setPersons(persons.concat(returnedPerson));
-        setNewName("");
-        setNewNumber("");
-        setMessage(`${newName} was successfully added`);
-        setTimeout(() => {
-          setMessage(null);
-        }, 5000).catch((error) => {
+      personService
+        .create(personObject)
+        .then((returnedPerson) => {
+          setPersons(persons.concat(returnedPerson));
+          setNewName("");
+          setNewNumber("");
+          setMessage(`${newName} was successfully added`);
+          setTimeout(() => {
+            setMessage(null);
+          }, 5000);
+        })
+        .catch((error) => {
           setMessage(`[ERROR] ${error.response.data.error}`);
           setTimeout(() => {
             setMessage(null);
           }, 5000);
           console.log(error.response.data);
         });
-      });
     }
   };
 
