@@ -1,6 +1,6 @@
-const Notification = ({ error, message }) => {
+const Notification = ({ isError, message }) => {
   const notificationStyle = {
-    color: !error ? "green" : "red",
+    color: isError ? "red" : "green",
     background: "lightgrey",
     fontSize: 20,
     borderStyle: "solid",
